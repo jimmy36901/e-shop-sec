@@ -12,3 +12,8 @@
   user-select: none;
   cursor: pointer;
 }
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .product_name {
+    font-size: 1rem !important;
+  }
+}

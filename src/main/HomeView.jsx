@@ -8,15 +8,15 @@ import { motion } from "framer-motion";
 import Service from "./Service/Service";
 import ProductList from "./UI/ProductList";
 import ProductData from "@/assets/data/ProductData";
-import counterImg from "../../public/image/countDown.png"
-import  Clock  from "./UI/Clock";
+import counterImg from "../../public/image/countDown.png";
+import Clock from "./UI/Clock";
 import { Link } from "react-router-dom";
 import { Scale } from "lucide-react";
 
 const HomeView = () => {
   const [trendingProduct, setTrendingProduct] = useState([]);
-  const [bestSales, setBestSales] =useState([]);
-  const [newArrival, setNewArrival] = useState([])
+  const [bestSales, setBestSales] = useState([]);
+  const [newArrival, setNewArrival] = useState([]);
 
   const year = new Date().getFullYear();
 
@@ -25,16 +25,15 @@ const HomeView = () => {
       (item) => item.Product_category === "Couch"
     );
     const bestSalesCategory = ProductData.filter(
-      (item)=> item.Product_category === "Beach"
+      (item) => item.Product_category === "Beach"
     );
     const NewArrivalCategory = ProductData.filter(
-      (item)=> item.Product_category === "Mobile"
+      (item) => item.Product_category === "Mobile"
     );
 
     setTrendingProduct(filteredCategory);
     setBestSales(bestSalesCategory);
     setNewArrival(NewArrivalCategory);
-
   }, []);
   return (
     <Helmen title={"Home"}>
@@ -78,44 +77,47 @@ const HomeView = () => {
 
       <section className="best_sales">
         <Container>
-            <Row>
-              <Col lg="12" className="text-center">
-                <h2 className="section_title">Best Sales</h2>
-              </Col>
-              <ProductList data={bestSales}/>
-            </Row>
+          <Row>
+            <Col lg="12" className="text-center">
+              <h2 className="section_title">Best Sales</h2>
+            </Col>
+            <ProductList data={bestSales} />
+          </Row>
         </Container>
       </section>
 
       <section className="countDown">
-        <Container>
-            <Row>
-              <Col lg="6" className="flex flex-column">
-                <div className="clock_top_content">
-                  <h4 className="text-white fs-6 mb-2">Limited Offers</h4>
-                  <h3 className="text-white fs-5 mb-3">Quality Armchair</h3>
-                </div>
-                <Clock/>
+        <Container className="max-[560px]:p-0">
+          <Row>
+            <Col lg="6" className="flex flex-column max-[560px]:p-0 ">
+              <div className="clock_top_content">
+                <h4 className="text-white fs-6 mb-2">Limited Offers</h4>
+                <h3 className="text-white fs-5 mb-3">Quality Armchair</h3>
+              </div>
+              <Clock />
 
-                <motion.button whileTap={{scale:1.2}} className="clock_buy">
-                  <Link to="/shop">Visit Store</Link> 
-                </motion.button>
-              </Col>
-              <Col lg="6" className="flex justify-end align-items-end">
-                <img src={counterImg} alt="" />
-              </Col>
-            </Row>
+              <motion.button whileTap={{ scale: 1.2 }} className="clock_buy">
+                <Link to="/shop">Visit Store</Link>
+              </motion.button>
+            </Col>
+            <Col
+              lg="6"
+              className="flex justify-end align-items-end max-[560px]:hidden md:hidden lg:flex"
+            >
+              <img src={counterImg} alt="" />
+            </Col>
+          </Row>
         </Container>
       </section>
 
       <section className="NewArrival">
         <Container>
-            <Row>
-              <Col lg="12" className="text-center">
-                <h2 className="section_title">New Arrival</h2>
-              </Col>
-              <ProductList data={newArrival}/>
-            </Row>
+          <Row>
+            <Col lg="12" className="text-center">
+              <h2 className="section_title">New Arrival</h2>
+            </Col>
+            <ProductList data={newArrival} />
+          </Row>
         </Container>
       </section>
     </Helmen>
